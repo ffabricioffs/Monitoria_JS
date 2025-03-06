@@ -91,5 +91,175 @@ function staircase(n) {
     }
 }
 
+// 6. Diagonal Difference
 
+function diagonalDifference(arr) {
+    let somaPrimeiraDiagonal = 0;
+    let somaSegundaDiagonal = 0;
+    let diferenca;
+    let c = arr.length - 1;
+
+    for (let i = 0; i < arr.length; i++){
+        somaPrimeiraDiagonal += arr[i][i];
+    }
+
+    for (let i = 0; i < arr.length; i++){
+        somaSegundaDiagonal += arr[i][c];
+        c--;
+    }
+    
+    diferenca = somaSegundaDiagonal - somaPrimeiraDiagonal;
+    
+    if (diferenca < 0){
+        diferenca *= -1;
+    }
+    
+    return diferenca;
+}
+
+
+// 7. Birthday Cake Candles
+function birthdayCakeCandles(candles) {
+    let tallestCandlesQuantity = 0;
+    let tallestCandle = candles[0];
+    
+    for (let i = 0; i < candles.length; i++){
+        if (tallestCandle === candles[i]){
+            tallestCandlesQuantity++;
+        }
+        if (candles[i] > tallestCandle){
+            tallestCandlesQuantity = 1;
+            tallestCandle = candles[i];
+        }
+    }
+    
+        return tallestCandlesQuantity;
+}
+
+// 8. Mini-Max Sum
+function miniMaxSum(arr) {
+    let somaArr = []; 
+    
+    let valorMaior = arr[0] + arr[1] + arr[2] + arr[3]; 
+    let valorMenor = arr[0] + arr[1] + arr[2] + arr[3]; 
+    
+    
+    somaArr[0] = arr[0] + arr[1] + arr[2] + arr[4];
+    somaArr[1] = arr[0] + arr[1] + arr[3] + arr[4];
+    somaArr[2] = arr[0] + arr[2] + arr[3] + arr[4];
+    somaArr[3] = arr[1] + arr[2] + arr[3] + arr[4];
+    
+    for (let i = 0; i < arr.length; i++){
+    
+        if (somaArr[i] > valorMaior){
+            valorMaior = somaArr[i];
+        }
+        if (somaArr[i] < valorMenor){
+            valorMenor = somaArr[i];
+        }
+    
+    }
+    
+    console.log( valorMenor, valorMaior);
+    
+}
+
+// 9. Time Conversion
+function timeConversion(s) {
+    let horarioMilitar;
+
+let partesHora = s.split(':');
+
+let horas = parseInt(partesHora[0]);
+let minutos = partesHora[1];
+let segundos = partesHora[2].slice(0, 2);
+
+if (s.includes('AM') && horas === 12){
+    horarioMilitar = '00:' + minutos + ':' + segundos;
+}
+
+if (s.includes('AM') && horas != 12){
+    if(horas < 10){
+        horarioMilitar = '0' + horas + ':' + minutos + ':' + segundos;
+    }
+    else {
+        horarioMilitar = horas + ':' + minutos + ':' + segundos;
+    }
+}
+
+if (s.includes('PM')){
+    if(horas != 12){
+        horas += 12;
+        horarioMilitar = horas + ':' + minutos + ':' + segundos;
+    }
+    else {
+        horarioMilitar = horas + ':' + minutos + ':' + segundos;
+    }
+}
+
+    return horarioMilitar;
+} 
+
+
+// 10. Grading Students
+function gradingStudents(grades) {
+    
+    let arredondamento = [];
+
+    for (let i = 0; i < grades.length; i++){
+        let notas = grades[i];
+        let diferenca = 0;
+        
+        if (notas < 38) {
+            arredondamento.push(notas);
+        }
+        else {
+            diferenca = Math.ceil(grades[i]/5)*5 - grades[i];
+            if (diferenca < 3){
+                arredondamento.push(Math.ceil(grades[i]/5)*5);
+            }
+            else {
+                arredondamento.push(notas);
+            }
+        }
+    }
+    
+    return arredondamento;
+
+}
+
+// 11. Breaking the Records
+function breakingRecords(scores) {
+    let maxMinMudancas = [0, 0];
+    let maxMinValores = [scores[0], scores[0]];
+
+    for (let i = 0; i < scores.length; i++){
+        if (scores[i] < maxMinValores[1]){
+            maxMinValores[1] = scores[i];
+            maxMinMudancas[1] += 1;
+        }
+        if (scores[i] > maxMinValores[0]){
+            maxMinValores[0] = scores[i];
+            maxMinMudancas[0] += 1;
+        }
+    }
+
+    return maxMinMudancas;
+}
+
+// 12. Divisible Sum Pairs
+function divisibleSumPairs(n, k, ar) {
+    let divisiveis = 0;
+
+    for (let i = 0; i < n - 1; i++) {
+        for (let j = i + 1; j < n; j++) {
+            let somaPares = ar[i] + ar[j];
+            if (somaPares % k === 0) {
+                divisiveis += 1;
+            }
+        }
+    }
+
+    return divisiveis;
+}
 
