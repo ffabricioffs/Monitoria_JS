@@ -27,6 +27,8 @@ function compareTriplets(a, b) {
             aliceAndBob[1]++;
         } 
     }
+
+    return aliceAndBob;
 }
 
 
@@ -261,5 +263,65 @@ function divisibleSumPairs(n, k, ar) {
     }
 
     return divisiveis;
+}
+
+// 13. Migratory Birds
+function migratoryBirds(arr) {
+    let frequencia = [0, 0, 0, 0, 0, 0];
+
+    for (let i = 0; i < arr.length; i++) {
+        frequencia[arr[i]]++;
+    }
+
+    let maisFrequente = 1;
+    for (let i = 2; i <= 5; i++) {
+        if (frequencia[i] > frequencia[maisFrequente]) {
+            maisFrequente = i;
+        }
+    }
+
+    return maisFrequente;
+}
+
+// 14. Between Two Sets
+function getTotalX(a, b) {
+    let multiplos = [];
+    let numerosDivisiveis = 0;
+
+    let maiorA = a[0];
+    for (let i = 1; i < a.length; i++) {
+        if (a[i] > maiorA) {
+            maiorA = a[i];
+        }
+    }
+
+    for (let i = maiorA; i <= b[0]; i++) {
+        let valido = true;
+
+        for (let j = 0; j < a.length; j++) {
+            if (i % a[j] !== 0) {
+                valido = false;
+                break;
+            }
+        }
+
+        
+        if (valido === true) {
+            for (let j = 0; j < b.length; j++) {
+                if (b[j] % i !== 0) {
+                    valido = false;
+                    break;
+                }
+            }
+        }
+
+        if (valido === true) {
+            multiplos.push(i);
+        }
+    }
+
+    numerosDivisiveis = multiplos.length;
+
+    return numerosDivisiveis;
 }
 
